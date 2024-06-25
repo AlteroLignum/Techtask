@@ -1,7 +1,9 @@
 import { CartState,ProductCart } from '@/interfaces/interfaces'
 import {createSlice,PayloadAction} from '@reduxjs/toolkit'
 
-const savedCartState = localStorage.getItem('cart');
+const isClient = typeof window !== 'undefined';
+
+const savedCartState = isClient ? localStorage.getItem('cart') : null;
 
 const initialState:CartState = savedCartState ? JSON.parse(savedCartState) : {
     items:[],
